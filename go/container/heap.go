@@ -1,6 +1,7 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
 )
 
@@ -28,6 +29,25 @@ func (h myHeap) printHeap() {
 	n := 1
 	levelCount := 1
 	for n <= h.Len() {
-		//		fmt.
+		fmt.Println(h[n-1 : n-1+levelCount])
+		n += levelCount
+		levelCount *= 2
 	}
+}
+
+func main() {
+	data := [7]int{13, 25, 1, 9, 5, 12, 11}
+	aheap := new(myHeap)
+
+	for _, value := range data {
+		aheap.Push(value)
+	}
+
+	aheap.printHeap()
+
+	heap.Init(aheap)
+
+	fmt.Println("aheap:", *aheap)
+
+	aheap.printHeap()
 }
